@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "rootDir": ".",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strict": true,
+    "module": "commonjs"
+  },
+  "include": ["*.ts"],
+  "exclude": ["node_modules", "dist", "tests", "src/node_modules/*"]
+}
