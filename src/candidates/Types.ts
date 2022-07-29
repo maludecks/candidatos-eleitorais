@@ -1,8 +1,3 @@
-export type Partido = {
-  nome: string;
-  sigla: string;
-};
-
 export type RedeSocial = {
   nome: 'twitter' | 'instagram' | 'facebook' | 'tiktok';
   url: string;
@@ -14,7 +9,7 @@ export type Eleicoes = 'gerais' | 'estaduais' | 'municipais';
 
 export type Candidato = {
   nome: string;
-  partido: Partido;
+  partido: string;
   numero: number;
   descricao: string;
   redesSociais: RedeSocial[];
@@ -24,3 +19,10 @@ export type Candidato = {
   eleicoes: Eleicoes;
   ano: number;
 };
+
+export type ListQueryFilters = {
+  ano?: number,
+};
+
+/* eslint-disable @typescript-eslint/no-explicit-any*/
+export type DbRow = Record<string, any>;

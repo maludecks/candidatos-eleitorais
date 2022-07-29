@@ -4,8 +4,8 @@ import { getAll } from './src/index';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/candidato', async (_, res) => {
-  const response = await getAll();
+app.get('/candidato', async (req, res) => {
+  const response = await getAll(req);
   res.status(response.statusCode).send(response.body);
 });
 
