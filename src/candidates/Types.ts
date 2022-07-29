@@ -10,7 +10,7 @@ export type RedeSocial = {
 
 export type Cargo = 'presidencia' | 'vice-presidencia';
 
-export type Eleicoes = 'federais';
+export type Eleicoes = 'gerais' | 'estaduais' | 'municipais';
 
 export type Candidato = {
   nome: string;

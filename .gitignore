@@ -4,3 +4,9 @@
 node_modules/
 dist/
 .env
+
+# Supabase
+**/supabase/.branches
+**/supabase/.temp
+
+draft.ts
