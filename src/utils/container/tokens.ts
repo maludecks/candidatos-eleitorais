@@ -1,10 +1,10 @@
+import { SupabaseClient } from '@supabase/supabase-js';
 import { token } from 'containor';
 import CandidatesRepository from '../../candidates/CandidatesRepository';
-import DatabaseService from '../../database/DatabaseService';
 import ResponseFactory from '../ResponseFactory';
 
 export default {
-  databaseService: token<DatabaseService>('databaseService'),
+  databaseClient: token<SupabaseClient>('databaseClient'),
   responseFactory: token<ResponseFactory>('responseFactory'),
   candidatesRepository: token<CandidatesRepository>('candidatesRepository'),
 };

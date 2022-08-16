@@ -1,15 +1,18 @@
-import { Container } from 'containor';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Container, raw } from 'containor';
 import CandidatesRepository from '../../candidates/CandidatesRepository';
-import DatabaseService from '../../database/DatabaseService';
 import ResponseFactory from '../ResponseFactory';
 import tokens from './tokens';
 
 const container = new Container();
 
-container.add(tokens.databaseService, DatabaseService);
+container.add(tokens.databaseClient, createClient, [
+  raw(process.env.DB_HOST || ''),
+  raw(process.env.DB_ACCESS_KEY || '')
+]);
 container.add(tokens.responseFactory, ResponseFactory);
 container.add(tokens.candidatesRepository, CandidatesRepository, [
-  tokens.databaseService,
+  tokens.databaseClient,
 ]);
 
 export default container;
