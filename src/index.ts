@@ -14,5 +14,13 @@ export const getAll = async (request: Request): Promise<Response> => {
     filters.ano = Number(request.query.ano);
   }
 
-  return responseFactory.success(await candidatesRepository.list(filters));
+  try {
+    return responseFactory.success(await candidatesRepository.list(filters));
+  } catch (e) {
+    const errorMessage = 'Erro ao tentar consultar lista de candidatos';
+
+    console.error(errorMessage, e);
+
+    return responseFactory.internalServerError(errorMessage);
+  }
 };
