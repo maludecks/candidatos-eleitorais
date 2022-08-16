@@ -1,4 +1,4 @@
-import { Candidato, ListQueryFilters, DbRow } from './types';
+import { Candidato, ListQueryFilters, DbRow } from './Types';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 export default class CandidatesRepository {

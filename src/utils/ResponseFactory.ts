@@ -1,4 +1,4 @@
-import type { Body, Response } from './types';
+import type { Body, Response } from './Types';
 
 export default class ResponseFactory {
   public success(body: Body): Response {
