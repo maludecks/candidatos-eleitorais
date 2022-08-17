@@ -6,26 +6,29 @@ export default class CandidatesRepository {
 
   public async list(filters: ListQueryFilters = {}): Promise<Candidato[]> {
     const query = this.databaseClient
-    .from<DbRow>('candidatura')
-    .select(`
-      elegivel,
-      confirmado,
-      cargo,
-      partido,
-      numero,
-      candidato (
-        nome,
-        descricao,
-        rede_social (
-          plataforma,
-          url
+      .from<DbRow>('candidatura')
+      .select(
+        `
+        elegivel,
+        confirmado,
+        cargo,
+        partido,
+        numero,
+        candidato (
+          nome,
+          descricao,
+          rede_social (
+            plataforma,
+            url
+          )
+        ),
+        eleicao!inner (
+          ano,
+          tipo
         )
-      ),
-      eleicao!inner (
-        ano,
-        tipo
+      `
       )
-    `);
+      .order('numero', { ascending: true });
 
     if (filters.ano) {
       query.eq('eleicao.ano', filters.ano);
@@ -34,7 +37,9 @@ export default class CandidatesRepository {
     const { data, error } = await query;
 
     if (error) {
-      throw new Error(`Erro ao tentar consultar banco de dados: ${error.message}`);
+      throw new Error(
+        `Erro ao tentar consultar banco de dados: ${error.message}`
+      );
     }
 
     const candidates: Candidato[] = data.map(item => {
@@ -43,7 +48,10 @@ export default class CandidatesRepository {
         numero: item.numero,
         descricao: item.candidato.descricao,
         partido: item.partido,
-        redesSociais: item.candidato.rede_social.map((s: DbRow) => ({ nome: s.plataforma, url: s.url })),
+        redesSociais: item.candidato.rede_social.map((s: DbRow) => ({
+          nome: s.plataforma,
+          url: s.url,
+        })),
         confirmado: item.confirmado,
         elegivel: item.elegivel,
         ano: item.eleicao.ano,

@@ -21,7 +21,7 @@ export type Candidato = {
 };
 
 export type ListQueryFilters = {
-  ano?: number,
+  ano?: number;
 };
 
 /* eslint-disable @typescript-eslint/no-explicit-any*/

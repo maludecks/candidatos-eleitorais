@@ -2,7 +2,13 @@
 
 API de Candidatos(as) Eleitorais das Eleições Brasileiras de 2022.
 
-**{Em andamento}**
+O MVP da API pode ser acessada na seguinte URL: https://candidatos-eleitorais.herokuapp.com. _Atenção: desenvolvimento em andamento._
+
+### Endpoints
+
+| Path       | Método | Descrição                        |
+| ---------- | ------ | -------------------------------- |
+| /candidato | GET    | Lista de candidatos e candidatas |
 
 # Aviso
 
