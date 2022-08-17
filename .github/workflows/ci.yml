@@ -1,0 +1,25 @@
+name: Run CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+env:
+  DB_HOST: http://localhost:54321
+  DB_ACCESS_KEY: test
+jobs:
+  pull_request_action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Installing dependencies
+        run: npm i
+      - name: Compiling Typescript files
+        run: npm run compile
+      - name: Running linter
+        run: npm run lint
