@@ -6,7 +6,10 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/candidato', async (req, res) => {
   const response = await getAll(req);
-  res.status(response.statusCode).send(response.body);
+  res
+    .header('Content-Type', 'application/json')
+    .status(response.statusCode)
+    .send(response.body);
 });
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
