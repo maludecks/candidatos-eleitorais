@@ -10,7 +10,7 @@ describe('CandidatesRepository', () => {
     databaseClient = new SupabaseClient(
       'http://localhost:54321',
       // local env auto generated key
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSJ9.vI9obAHOGyVVKa3pD--kJlyxp-Z2zV9UUMAhKpNLAcU',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSJ9.vI9obAHOGyVVKa3pD--kJlyxp-Z2zV9UUMAhKpNLAcU'
     );
     candidatesRepository = new CandidatesRepository(databaseClient);
   });
@@ -20,15 +20,15 @@ describe('CandidatesRepository', () => {
       const res = await candidatesRepository.list();
 
       expect(res.length).toBe(2);
-      expect(res[0].nome).toEqual('Erlich Backman');
-      expect(res[1].nome).toEqual('Jayda Berger');
+      expect(res[0].nome).toEqual('Jayda Berger');
+      expect(res[1].nome).toEqual('Erlich Backman');
     });
 
     test('filtra lista de candidatos', async () => {
       const fixture = candidate();
 
       const res = await candidatesRepository.list({
-        ano: 2022
+        ano: 2022,
       });
 
       expect(res.length).toBe(1);
@@ -37,7 +37,7 @@ describe('CandidatesRepository', () => {
 
     test('retorna vazio se criterio do filtro nao retorna candidatos', async () => {
       const res = await candidatesRepository.list({
-        ano: 2019
+        ano: 2019,
       });
 
       expect(res.length).toBe(0);

@@ -8,7 +8,7 @@ const responseFactory = container.get(tokens.responseFactory);
 const candidatesRepository = container.get(tokens.candidatesRepository);
 
 export const getAll = async (request: Request): Promise<Response> => {
-  let filters: ListQueryFilters = {};
+  const filters: ListQueryFilters = {};
 
   if (request.query?.ano) {
     filters.ano = Number(request.query.ano);
